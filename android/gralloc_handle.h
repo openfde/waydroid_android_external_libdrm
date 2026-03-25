@@ -58,6 +58,7 @@ struct gralloc_handle_t {
 	uint32_t height; /* height of buffer in pixels */
 	uint32_t format; /* pixel format (Android) */
 	uint32_t usage; /* android libhardware usage flags */
+	int covert_format; /* flag for covert format */
 
 	uint32_t stride; /* the stride in bytes */
 	int data_owner; /* owner of data (for validation) */
