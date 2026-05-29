@@ -63,6 +63,8 @@ struct gralloc_handle_t {
 	int data_owner; /* owner of data (for validation) */
 	uint64_t modifier __attribute__((aligned(8))); /* buffer modifiers */
 
+	int convert_format; /* flag for convert format */
+
 	union {
 		void *data; /* pointer to struct gralloc_gbm_bo_t */
 		uint64_t reserved;
@@ -74,7 +76,7 @@ struct gralloc_handle_t {
 #define GRALLOC_HANDLE_NUM_FDS 1
 #define GRALLOC_HANDLE_NUM_INTS (	\
 	((sizeof(struct gralloc_handle_t) - sizeof(native_handle_t))/sizeof(int))	\
-	 - GRALLOC_HANDLE_NUM_FDS)
+	 - GRALLOC_HANDLE_NUM_FDS + 1)
 
 static inline struct gralloc_handle_t *gralloc_handle(buffer_handle_t handle)
 {
@@ -104,6 +106,7 @@ static inline native_handle_t *gralloc_handle_create(int32_t width,
 	handle->format = hal_format;
 	handle->usage = usage;
 	handle->prime_fd = -1;
+	handle->convert_format = 0;
 
 	return nhandle;
 }
