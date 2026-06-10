@@ -21,15 +21,6 @@
 // IN THE SOFTWARE.
 //
 
-package {
-    // See: http://go/android-license-faq
-    // A large-scale-change added 'default_applicable_licenses' to import
-    // all of the 'license_kinds' from "external_libdrm_license"
-    // to get the below license kinds:
-    //   SPDX-license-identifier-MIT
-    default_applicable_licenses: ["external_libdrm_license"],
-}
-
 build = ["Android.sources.bp"]
 
 cc_library_static {
@@ -41,4 +32,5 @@ cc_library_static {
     shared_libs: ["libdrm"],
     header_libs: ["libdrm_test_headers"],
     export_header_lib_headers: ["libdrm_test_headers"],
+    vendor_available: true,
 }
